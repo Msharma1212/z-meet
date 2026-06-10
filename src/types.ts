@@ -1,0 +1,39 @@
+export interface User {
+  _id: string;
+  name: string;
+  email: string;
+  avatar?: string;
+  token?: string;
+  role?: 'admin' | 'developer' | 'co-admin' | 'creator' | 'user' | 'host';
+  creatorId?: string;
+  audience?: string[];
+  referralCode?: string;
+  referredBy?: string;
+  settings?: {
+    language: string;
+    notifications: {
+      reminders: boolean;
+      emailNotifs: boolean;
+    };
+  };
+}
+
+export interface Meeting {
+  _id: string;
+  title: string;
+  code: string;
+  host: string;
+  startTime: string;
+  isLive: boolean;
+  isBroadcast: boolean;
+  enableWaitingRoom: boolean;
+  participants: string[];
+}
+
+export interface ChatMessage {
+  id: string;
+  senderName: string;
+  senderId: string;
+  text: string;
+  timestamp: Date;
+}

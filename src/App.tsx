@@ -1,0 +1,80 @@
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { AuthProvider, useAuth } from './context/AuthContext';
+import { Layout } from './components/Layout';
+import { Login } from './pages/Login';
+import { Register } from './pages/Register';
+import { Dashboard } from './pages/Dashboard';
+import { HistoryPage } from './pages/History';
+import { SettingsPage } from './pages/Settings';
+import { MeetingRoom } from './pages/MeetingRoom';
+import { AdminDashboard } from './pages/AdminDashboard';
+import { Toaster } from 'react-hot-toast';
+
+const PrivateRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user, loading } = useAuth();
+  if (loading) return <div className="h-screen bg-slate-950 flex items-center justify-center text-white font-black tracking-tighter text-2xl uppercase">Initializing...</div>;
+  return user ? <Layout>{children}</Layout> : <Navigate to="/login" />;
+};
+
+const AdminRoute = ({ children }: { children: React.ReactNode }) => {
+  const { user, loading } = useAuth();
+  if (loading) return <div className="h-screen bg-slate-950 flex items-center justify-center text-white font-black tracking-tighter text-2xl uppercase">Initializing...</div>;
+  if (!user || (user.role !== 'admin' && user.role !== 'developer' && user.role !== 'co-admin')) return <Navigate to="/dashboard" />;
+  return <Layout>{children}</Layout>;
+};
+
+export default function App() {
+  return (
+    <AuthProvider>
+      <Router>
+        <Toaster position="top-right" />
+        <Routes>
+          <Route path="/login" element={<Login />} />
+          <Route path="/register" element={<Register />} />
+          <Route 
+            path="/dashboard" 
+            element={
+              <PrivateRoute>
+                <Dashboard />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/history" 
+            element={
+              <PrivateRoute>
+                <HistoryPage />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/settings" 
+            element={
+              <PrivateRoute>
+                <SettingsPage />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/meeting/:code" 
+            element={
+              <PrivateRoute>
+                <MeetingRoom />
+              </PrivateRoute>
+            } 
+          />
+          <Route 
+            path="/admin" 
+            element={
+              <AdminRoute>
+                <AdminDashboard />
+              </AdminRoute>
+            } 
+          />
+          <Route path="/" element={<Navigate to="/dashboard" />} />
+        </Routes>
+      </Router>
+    </AuthProvider>
+  );
+}

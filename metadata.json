@@ -1,0 +1,11 @@
+{
+  "name": "Z-Meet Video Conference",
+  "description": "A professional real-time video conferencing application with screen sharing, live chat, and AI-powered meeting assistants.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
