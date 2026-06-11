@@ -1,20 +1,17 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Z Meet 🚀
 
-# Run and deploy your AI Studio app
+A modern real-time video conferencing and community platform inspired by Zoom, Google Meet, and creator-focused communities.
 
-This contains everything you need to run your app locally.
+## Features
 
-View your app in AI Studio: https://ai.studio/apps/c2999b1b-2f50-4962-99ad-09146bde2346
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- HD Video & Audio Meetings
+- Screen Sharing
+- Live Chat
+- Waiting Room System
+- Role-Based Access Control (Developer, Host, Audience)
+- Hand Raise Feature
+- Meeting Controls (Mute, Camera, Remove User)
+- Audience & Referral System
+- Host Community Management
+- Live Meeting Notifications
+- Responsive UI (Desktop, Tablet, Mobile)
