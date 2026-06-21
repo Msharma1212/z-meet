@@ -105,7 +105,7 @@ JWT_SECRET=your_secret
 GEMINI_API_KEY=your_api_key
 ```
 
----
+
 
 # ▶️ Run Development Server
 
